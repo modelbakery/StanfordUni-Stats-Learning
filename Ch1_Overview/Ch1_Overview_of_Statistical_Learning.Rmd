@@ -31,7 +31,9 @@ Depending on the family of Regression model and its complexity of $\ f(x)$, we m
 The notation for ideal Regression function:
 
 $$ f(x) = E(Y|X = x) $$
-Immediately it emphasis that this regression function gives conditional expectation of $\ Y|X$. Is there an ideal $\ f(X)$? The ideal regression function means the expected value (average) of $\ Y$ given $\ X$. In section 1B we will explore more on this conditional expectation, its useful properties, and geometric interpretation. 
+Immediately it emphasis that this regression function gives conditional expectation of $\ Y|X$. Is there an ideal $\ f(X)$? 
+
+The ideal regression function means the expected value (average) of $\ Y$ given $\ X$. In section 1B we will explore more on this conditional expectation, its useful properties, and geometric interpretation. 
 
 For example, if $\ X$ had three components $\ x \in R^3$  It is going to be a conditional expectation of $\ Y$ given three particular instances of these three components of $\ X$. 
 
@@ -49,12 +51,13 @@ Meaning of the ideal or optimal regression function:
 $$
 f(x) = E(Y|X = x)\ is\ the\ function\ that\ minimises\ E((Y - g(X))^2|X = x)\ over\ all\ functions\ g\ at\ all\ points\ X = x 
 $$
-* At each point $\ X$, there will be mistakes. 
 
-$$
+* At each point $\ X$ , there will be mistakes. 
 
-E((Y - \hat{f}(X))^2|X = x) = (f(x) - \hat{f}(x))^2 + Var(\epsilon)
 
+
+$$ 
+E((Y - \hat{f}(X))^2|X = x) = (f(x) - \hat{f}(x))^2 + Var(\epsilon) 
 $$
 
 
