@@ -1,0 +1,154 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Overview of Statistical Learning},
+  pdfauthor={Seung Hyun Sung},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Overview of Statistical Learning}
+\author{Seung Hyun Sung}
+\date{11/4/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{contents}{%
+\subsubsection{Contents}\label{contents}}
+
+\begin{itemize}
+\tightlist
+\item
+  1A Introduction to Regression Models
+\item
+  1B Conditional Expectation (Harvard Open Source Lecture)
+\item
+  1C Dimensionality and Structured Models
+\item
+  1D Model Selection and Bias-Variance Trade-off
+\item
+  1E Least Squares and Nearest Neighbours
+\item
+  1F K-Nearest Neighbours in R
+\end{itemize}
+
+\begin{quote}
+In essence, statistical learning refers to a set of approaches for
+estimating \(\ f\). In this chapter we outline some of the key
+theortical concepts that arise in estimating \(\ f\), as well as tools
+for evaluating the estimates obtained. --- pg 17 \emph{An Introduction
+to Statistical Learning with Apllications in R}.
+\end{quote}
+
+\hypertarget{a-introduction-to-regression-models}{%
+\subsection{1A Introduction to Regression
+Models}\label{a-introduction-to-regression-models}}
+
+Depending on the family of Regression model and its complexity of
+\(\ f(x)\), we may be able to understand how each compnent \(\ X_j\)
+affects \(\ Y\), in what particular fashion. Depending on the task
+(target variable \(\ Y\)) will vary in weight of importance between the
+interpretation and accuracy. Hence, the phase we are with predicting or
+defining the task it is important to take this in account before
+designing and selecting a model.
+
+The notation for ideal Regression function:
+
+\[ f(x) = E(Y|X = x) \] Immediately it emphasis that this regression
+function gives conditional expectation of \(\ Y|X\). Is there an ideal
+\(\ f(X)\)? The ideal regression function means the expected value
+(average) of \(\ Y\) given \(\ X\). In section 1B we will explore more
+on this conditional expectation, its useful properties, and geometric
+interpretation.
+
+For example, if \(\ X\) had three components \(\ x \in R^3\) It is going
+to be a conditional expectation of \(\ Y\) given three particular
+instances of these three components of \(\ X\).
+
+\[
+f(x) = f(x_1, x_2, x_3) = E(Y|X_1 = x_1, X_2 = x_2, X_3 = x_3) 
+\] The question given to the function is that at particular point X with
+three coordinates, \(\ X_1, X_2, X_3\), what is good value for the
+function at that point of instances.
+
+Meaning of the ideal or optimal regression function:
+
+\begin{itemize}
+\item
+  Conditional Average - \(\ E(Y)\) would be the averages of \(\ Y's\) at
+  these coordinates, and the regression function would do that at all
+  points in the plane.
+\item
+  Ideal means with regard to a loss function, the particular choice of
+  the function \(\ f(x)\) will minimise the sum of squared errors. I.e.
+\end{itemize}
+
+\[
+f(x) = E(Y|X = x)\ is\ the\ function\ that\ minimises\ E((Y - g(X))^2|X = x)\ over\ all\ functions\ g\ at\ all\ points\ X = x 
+\] * At each point \(\ X\), there will be mistakes.
+
+\$\$
+
+E((Y - \hat{f}(X))\^{}2\textbar X = x) = (f(x) - \hat{f}(x))\^{}2 +
+Var(\epsilon)
+
+\$\$
+
+\end{document}

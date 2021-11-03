@@ -3,7 +3,7 @@
 ***
 #### This is a self-learning note. Beyond the given contents, slides and R codes from the course, some extra contents from recommended books, resources, personal codes are included for comprehensive understanding. 
 
-#### Aim: There are many overlaps between statsitics learning and machine learning. My aim for this course is to get better scope on when and how to implement models and its parameters from the statistical aspects of approach. 
+#### Aim: There are many overlaps between statsitics learning and machine learning. My aim for this course is to gain wider scope on when and how to implement models and its parameters from the statistical aspects of approach. 
 ***
 Course Start Date: 11 2021
 
@@ -11,11 +11,10 @@ Expected End Date: 12 2021
 
 #### Lecturer: Trevor, Rob
 #### Reference Books:
-[1] "An Introduction to Statistical Learning, with Applications in R" (James, Witten, Hastie, Tibshirani - Springer 2013) 
-
-Avavilable here : http://www-bcf.usc.edu/~gareth/ISL/
+[1] "An Introduction to Statistical Learning, with Applications in R" (James, Witten, Hastie, Tibshirani - Springer 2013) Avavilable here : http://www-bcf.usc.edu/~gareth/ISL/
 
 [2] "The Elements of Statistical Learning Data Mining, Inference, and Prediction"
+
 ***
 
 ## Content Structure 
