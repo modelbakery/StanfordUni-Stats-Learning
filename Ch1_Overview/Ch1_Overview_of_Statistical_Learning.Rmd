@@ -33,6 +33,8 @@ The notation for ideal Regression function:
 $$ f(x) = E(Y|X = x) $$
 Immediately it emphasis that this regression function gives conditional expectation of $\ Y|X$. Is there an ideal $\ f(X)$? 
 
+### 1A.1 Ideal regression function 
+
 The ideal regression function means the expected value (average) of $\ Y$ given $\ X$. In section 1B we will explore more on this conditional expectation, its useful properties, and geometric interpretation. 
 
 For example, if $\ X$ had three components $\ x \in R^3$  It is going to be a conditional expectation of $\ Y$ given three particular instances of these three components of $\ X$. 
@@ -40,31 +42,134 @@ For example, if $\ X$ had three components $\ x \in R^3$  It is going to be a co
 $$
 f(x) = f(x_1, x_2, x_3) = E(Y|X_1 = x_1, X_2 = x_2, X_3 = x_3) 
 $$
-The question given to the function is that at particular point X with three coordinates, $\ X_1, X_2, X_3$, what is good value for the function at that point of instances. 
+The question given to the function is that at particular point X with three coordinates, $\ X_1, X_2, X_3$, what is good value for the function at that point of instances. We assume that there is some relationship between $\ Y$ and covariates $\ X$. 
 
 Meaning of the ideal or optimal regression function:
 
-* Conditional Average - $\ E(Y)$ would be the averages of $\ Y's$ at these coordinates, and the regression function would do that at all points in the plane. 
+* Conditional Average - $\ E(Y)$ would be the __averages__ of $\ Y's$ at these coordinates, and the regression function would do that at all points in the plane. 
 
-* Ideal means with regard to a loss function, the particular choice of the function $\ f(x)$ will minimise the sum of squared errors. I.e. 
+* Ideal means with regard to a loss function, the particular choice of the function $\ f(x)$ will minimise the sum of squared errors. 
+
+* $\ Y = f(X) + \epsilon$ where $\ \epsilon$ is a random error term (also referred as irreducible error), which is independent of X and has mean of zero. 
+  + linear regression assumption: $\ \epsilon$ ~ i.i.d. N(0, $\ \sigma^2$)
 
 $$
 f(x) = E(Y|X = x)\ is\ the\ function\ that\ minimises\ E((Y - g(X))^2|X = x)\ over\ all\ functions\ g\ at\ all\ points\ X = x 
 $$
 
-* At each point $\ X$ , there will be mistakes. 
+### 1A.2 Reducible and irreducible error
 
+At each point $\ X$ , there will be mistakes. Even with what we call ideal or optimal predictor of $\ Y$ with regard for the function, by nature of real world data, there will be a certain amount of noise presence on the $\ \epsilon$ distribution. We must remember that the function learns and predict basis of conditional averages of all $\ Y's$ given each X coordinates ($E(Y - \hat{Y})^2$ represents average of squared difference between predicted and actual value of $\ Y$). By means, despite the fit being ideal function $\ f$ to the regression model, it does not mean that prediction will be perfect.
 
+The expected squared error at a point x is:
 
+$$
+Err(x) = E[(Y - \hat{f}(x))^2] \\
+$$
+
+The Err(x) can be further decomposed as 
 $$ 
-E((Y - \hat{f}(X))^2|X = x) = (f(x) - \hat{f}(x))^2 + Var(\epsilon) 
+Err(x) = (E[\hat{f}(x)] - f(x))^2 + E[(\hat{f} - E[\hat{f}(x)])^2] + \sigma_{e}^2 \\
+$$
+$$
+Err(x) = (f(x) - \hat{f}(x))^2 + Var(\epsilon) \\
+$$
+$$
+\therefore\ Err(x) = Bias^2 + Variance + Irreducible\ Error
+$$
+
+The accuracy of $\ \hat{Y}$ as a prediction for $\ Y$ depends on the two quantities: reducible and irreducible error.
+
+In general, $\ \hat{f}$ will not be a perfect estimate for $\ f$, and this inaccuracy will introduce reducible error. This part of error we can potentially improve by uising the most appropriate statistical learning technique to estimate $\ f$. 
+
+However, even we our best estimate, there will be some left out residuals, irreducible error.
+
+"Y is also function of $\ \epsilon$, which by definition can not be predicted using X." This irreducible error can be larger than zero, as it may contain unmeasured variables that are useful in predicting $\ Y$. The only option to reduce such unmeasured quantity is by adding external variables. Establishing the independency of $E(Y - \hat{Y})^2$ with predicting $\ Y$ can be a useful guideline. 
+
+That said, we will be focusing on estimating $\ f$ with the aim of minimizing the reducible error. It is important to keep in mind that the irreducible error will always provide an upper bound on the accuracy of our prediction for $\ Y$. This bound is almost always unknown in practice. 
+
+
+
+## 1B Conditional Expectation (Harvard Open Source Lecture)
+
+Q: Why do we care about conditional probability?
+
+We gather evidence and condition on evidence to predict $\ Y$.
+
+Useful properties of conditional estimation are as follow:
+
+$$
+E(h(X)Y|X) = h(X) E(Y|X)\ [Taking\ out\ what\ is\ known]
+$$
+
+* If the X is given (known) so we know any function h of X, hence it is a constant from our view. 
+
+$$
+E(Y|X) = E(Y)\ if\ X,\ Y\ are\ independent 
+$$
+
+* If X, Y are independent, conditional distribution of Y given X is no different to non-conditional Y given X.
+
+*In this case the X being conditional does not help at all on predicting Y. 
+
+
+$$
+E(E(Y|X)) = E(Y)\  more\ like\ E(Y) = E(E(Y|X)) 
+$$
+* Interated Expectation 
+
+* E(Y) is essentially what we want to find out;
+
+* Cleverly choose appropriate X to make the problem simpler 
+
+
+$$
+E((Y-E(Y|X))h(X)) = 0
 $$
 
 
+* i.e. Y - E(Y|X) (residuals) is uncorrelated with h(X) (any function of X) 
+
+* How far are we with prediction 
+
+* $\ cov(Y-E(Y|X), h(X)) = E((Y-E(Y|X))h(X)) - E(Y-E(Y|X))Eh(X) $
+
+* Uncorrelated means in geometrically, the residuals E(Y - E(Y|X)) is orthogonal to the any function X 
+
+* Geometric intuition still applies to multiple dimensional space. 
+
+* When we do geometric conditional expectation, it is the projection! 
+
+
+$$
+Var(Y) = E(Var(Y|X)) + Var(E(Y|X))
+$$
+
+* Unconditional variance of Y = conditional variance of Y given X + conditional expectation of Y given X 
+
+* EVE's Law 
 
 
 
+## 1C Dimensionality and Structured Models
 
+
+### 1C.1 Nearest Neighbouring Averaging
+
+The conditional averaging approach on regression can have its limitation, when the data is not sufficient in amount to average every point $\ Y$. Also, referred as k-Nearest Neighbour (k-NN) Regression.
+
+Intuition: An estimate is formed by averaging over the 'k' nearest data points which are defined by a function called _neighborhood_ ($\ N$)
+
+* $\ E(Y|X = x)!$, Not enough data points to conditionally estimate the $\ Y$.
+
+* Relax the definition (parametric -> non-parametric) and let $\ \hat{f}(x) = Ave(Y|X \in N(x))$, where $\ N(x)$ is some _neighborhood_ of $\ x$. 
+
+* The degree of relaxing/smoothing can be represented by local size/amount of the neighbourhood acceptance boundary. 
+
+* Non-parametric methods, in general, more likely to come closer to estimate the $\ f$ and with an optimal parameter search, can outperform traditional methods. That said, the setting of parameters in k-NN regression is limited to only k, which paves way for parametric approach of solving. 
+
+
+### 1C.2 Curse of High Dimensionality 
 
 
 
