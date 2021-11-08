@@ -160,23 +160,40 @@ The conditional averaging approach on regression can have its limitation, when t
 
 Intuition: An estimate is formed by averaging over the 'k' nearest data points which are defined by a function called _neighborhood_ ($\ N$)
 
-* $\ E(Y|X = x)!$, Not enough data points to conditionally estimate the $\ Y$.
+* $\ E(Y|X = x)$, Not enough data points to conditionally estimate the $\ Y$.
 
 * Relax the definition (parametric -> non-parametric) and let $\ \hat{f}(x) = Ave(Y|X \in N(x))$, where $\ N(x)$ is some _neighborhood_ of $\ x$. 
 
 * The degree of relaxing/smoothing can be represented by local size/amount of the neighbourhood acceptance boundary. 
 
-* Non-parametric methods, in general, more likely to come closer to estimate the $\ f$ and with an optimal parameter search, can outperform traditional methods. That said, the setting of parameters in k-NN regression is limited to only k, which paves way for parametric approach of solving. 
+* Non-parametric methods, in general, more likely to come closer to estimate the $\ f$ and with an optimal parameter search, can outperform traditional methods. That said, the setting of parameters in k-NN regression is limited to only k, which may pave way for parametric approach of solving complexed model. 
 
 
 ### 1C.2 Curse of High Dimensionality 
 
+There are some pitfall to nearest neighbour averaging. Nearest neighbour averaging is known to be most effective under these circumstances:
+  
+  * Small number of variables, small P, i.e. p =< 4 and large $\ N$ to supply enough points in each neighbour to average for our estimate.
+
+In high dimension (large P), the nearest neighbour methods can be lousy, this is often referred as curse of dimensionality.  
+
+> Claim 1: "Generalizing correctly becomes exponentially harder as the dimensionality grows because fixed-size training sets cover a dwindling fraction of the input space."
 
 
+The expected edge length is $\ e_{D}(r) = r^{1/D}$, e.g. $\ e_{10}(0.01) = 0.63,\ e_{10}(0.1) = 0.80$
+
+i.e. to capture 1% or 10% of the data, we must cover 63% or 80% of the range of each input variable.
 
 
+> Claim 2: In high-dimension, data-points are far from each other. Consequently, “as the dimensionality increases, the choice of nearest neighbor becomes effectively random.”
 
+Consider N data points uniformly distributed in a D-dimensional unit ball centered at the origin. We consider a nearest-neighbor estimate at the origin. The median distance from the origin to the closest data point is:
 
+For N = 500, D = 10, this number is 0.52, more than halfway to the boundary.
+
+* We need to get a reasonable fraction of the $\ N$ values of $\ Y_{i}$ to average to bring the variance down - e.g. 10% (10% of the data points to be in each interval). So that our estimate has got a reasonable small variance. 
+
+* A 10% neighbourhood in high dimensions need no longer be local, so we lose the spirit of estimating $\ E(Y|X = x)$ by local averaging. 
 
 
 
