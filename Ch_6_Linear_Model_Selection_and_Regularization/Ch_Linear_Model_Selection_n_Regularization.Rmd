@@ -12,14 +12,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Objectives: Considering approaches for extending the the linear model framework. Improving the least squares by appropriate feature selection or shrinkage of feature coefficients to generalise the model in order to accommodate non-linear, but still additive, relatioships. 
+### Objectives: Consider approaches for extending the the linear model framework. Improving the least squares by appropriate feature selection or shrinkage of feature coefficients to generalise the model in order to accommodate non-linear, but still additive, relatioships. 
 
 
 ### Contents 
 
-* 6.1 Introdution and Best-Subset Selection
-* 6.2 Stepwise Selection 
-* 6.3 Backward Stepwise Selection 
+* 6.1 Introduction to Feature Selection Methods 
+* 6.2 Single best subset model selection and Bias 
 * 6.4 Estimating Test Error
 * 6.5 Validation and Cross-validation  
 * 6.6 Shrinkage Methods and Ridge Regression 
@@ -105,7 +104,7 @@ Backward stepwise selection is a feature selection method which has following st
 
 ## Single best subset model selection and Bias on RSS and $\ R^2$ 
 
-The problem: 
+__The problem:__ 
 
 A graphical RSS or $\ R^2$ as a function(p), the curve never gets worse. 
   * As more feature gets added to the linear model
@@ -114,7 +113,7 @@ A graphical RSS or $\ R^2$ as a function(p), the curve never gets worse.
 
 $\ R^2$ is a proportions of variance explained by linear regression model and its variance at $M_0$ {TSS} will never increase by the feature addition. Hence the RSS and $\ R^2$ cannot be used to choose among the p-1 models due to their dimensional space difference in size. 
 
-The result: 
+__The result:__ 
 
 Unlike the subset selection, forward and backward stepwise does not guarantees to find the best possible model out of its all $\ p^2$ models (combination of features). Thus there is a likeihood of presence in gap in between these RSS or $\ R^2$ curve as a function(p). As it could be that the best model containing k predictors is not a __superset__ of the best model ontaining k-1 predictors.
 
@@ -143,12 +142,37 @@ The stepwise feature selection has been a popular techniques. However, if this p
   + Regression coefficients: will appear larger
   + Confidence intervals: will appear narrower
   + p-values: will appear smaller; also invalid
-  + R-squred: will appear larger 
+  + $\ R^2$: will appear larger 
   
+
+* Most importantly, this stepwise method is a automatic feature selection procedure which can lead us to not think about the problem caused by collinearity. This is problematic in cases where, for instance, a variable should be definitely included in the model to control for confounding. 
+
 > The significance values [a.k.a. p-values] are generally invalid when a stepwise method (stepwise, forward, or bakward) is used. 
 > IBM Knowledge Center 
 
-* Most importantly, this stepwise method is a automatic feature selection procedure which can lead us to not think about the problem caused by collinearity. Thi is problematic in ases where, for instance, a variable should be definitely inluded in the model to control for confounding. 
+
+## Questions 
+
+Q: 
+
+Can $\ C_p$ used for only linear model and how in linear model the $\ C_p$ and AIC are assigned to be the same (proportional relationship)?
+
+* -2logL = RSS/$\ sigma^2$
+
+* What exactly is AIC and BIC and how does accounting estimated squared variance of epsilon relates to estimating the test set. 
+
+* Are AIC and BIC reliable measure to compare different models? Or would k-fold CV be more acceptable approach to estimate the test error?
+
+Clearer pictures on why stepwise functions neglects the principle in statistical approach. 
+
+* Why is the significance values (p-values) are generally invalid when a stepwise function is applied?
+
+External Q:
+
+* The i.i.d ideal rule on regression applies to entire family of regression?
+
+* When working with independent variable that is not ~N(mean, sigma) how do we know what distribution (e.g Bernoulli or poisson distribution) it is and how one should treat them (e.g. Rank order)? 
+
 
 
 
