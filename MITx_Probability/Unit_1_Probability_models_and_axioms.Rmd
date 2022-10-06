@@ -1,0 +1,172 @@
+---
+title: "Unit 1: Probability models and axioms"
+author: Seung Hyun Sung
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## [1] Sample Space and Events 
+
+* Random experiment: A mechanism that produces a definite outcome with __uncertainty__
+* Sample Space $\ \Omega$: "List" (Set) of all the possible outcome
+  + Mutually exclusive 
+  + Collectively exhaustive 
+  + Art: to be at the "right" granularity
+* Event: Subset of the sample space 
+
+### Discrete Sample space 
+
++ Use of Sequential Description can be very helpful (Tree Model)
++ Finite: Events that can be considered are 'at least 1 coin face-front'
++ Infinite: under a experiment where you throw a coin until the back comes out. The 'n-th back' event consideration. 
+
+### Continuous Sample space 
+
+* $\ (x,y)$ such that $\ 0 \leq x, y \leq 1$
+* The probability of each individual point in continuous value is essentially 0
+* Then we cannot know its probabilities, hence we use the interval (sets of outcome) assigned as sub-space
+* $\ S = \{x|0 \leq x \leq \inf\}$
+
+
+
+## [2] Probability axioms 
+
++ __Nonnegativity:__ $\ P(A) \geq 0$, Where A is the event (subset) | Consequences: $\ P(A) \leq 1$
++ __Normalisation:__ $\ P(\Omega) = 1$
++ __Additivity:__ if $\ A \cap B =  \oslash$, mutually exclusive, then $\ P(A \cup B) = P(A) + P(B)$
+
+
+### Properties
+
+  * From non-negativity: $\ P(A) \leq 1$
+  * From normalization: $\ P( \empty) = 0$
+  * For A, B, C disjoint: $\ P(A \cup B \cup C) = P(A) + P(B) + P(C)$.
+  * For $k$ disjoint events: $\ P(\{s_1, s_2, ..., s_k\}) = P(\{s_1\}) +... + P(\{s_k\}) = P(s_1) +... + P(s_k)$.
+  * If $A \subset B$, then  $\ P(A) \leq P(B)$. 
+  * $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, where $P(A \cap B) \geq 0$.
+  * $P(A \cup B) \leq P(A) + P(B)$.
+  * $P(A \cup B \cup C) = P(A \cup (A^c \cap B) \cup (A^c \cap B^c \cap C)) =P(A) + P(A^c \cap B) + P(A^c \cap B^c \cap C).$
+    
+
+
+## [3] Probability calculation steps
+
++ Specify the sample space
++ Specify probability law
++ Identify an event of interest
++ Calculate…
+
+###  Discrete Uniform Law
+
++ Assume sample space consists of $n$  equally likely elements
++ Assume A consists of $k$  elements
+
+$$
+P(A) = k * \frac{1}{n}
+$$
+
+### Probability calculation 
+
++ Uniform probability law: Probability = Area
++ Probabilities of each individual point is zero and also the line is zero
+  
+
+### Countable Activity: Discrete but infinite sample space
+    
+Given $P(n) = \frac{1}{2^n}, n = 1,2,...$, 
+
+$$
+P(\{2,4,6,...\}) = P(\{2\} \cup \{4\} ...) = P(2) + P(4) + ... = \frac{1}{2^2} + \frac{1}{2^4} + ... = \frac{1}{4}(1 + \frac{1}{4} + \frac{1}{4^2} + ...) = \frac{1}{4} \cdot \frac{1}{1-1/4} = \frac{1}{3}
+$$
+Using the formula:
+
+$$
+\sum^\infty_{n=1} = \frac{1}{2^n} = \frac{1}{2}\sum^\infty_{n=0} = \frac{1}{2}\cdot \frac{1}{1-1/2} = 1
+$$
+
+### Discussion - Countable additivity
+
+If $A_1, A_2, ...$ is an infinite __sequence__ of __disjoint__ events, then $P(A_1 \cup A_2 \cup ...) = P(A_1) + P(A_2) + ...$
+
+This axiom only applies for a countable "sequence" of events. This requires that the infinite sets should be discrete rather than continuous.
+
++ A case when it does not apply: The sample space is the 2D plane. For any real number $x$, let $A_x$ be the subset of the plane that consists of all points of the vertical line through the point $(x,0)$ i.e. $A_ x=\{ (x,y): y\in \mathrm{Re\, }\}$.
+    
+$$
+P(\bigcup A_x) \neq \sum P(A_x)
+$$
+
+
+
+
+## [4] Mathematical background
+
+Sets: a collection of distinct elements
+
++ For some sets $S_n, n=1,2,...$,
++ $x \in \bigcup_n S_n$ iff $x\in S_n$ for some $n$; $x \in \bigcap_n S_n$ iff $x \in S_n$, for all $n$.
+
+Properties: 
+
++ $S \cup T = T \cup S, \quad S \cup (T \cup U) = (S \cup T) \cup U$
++ $S \cap (T \cup U) = (S \cap T) \cup (S \cap U), \quad S \cup(T \cap U) = (S \cup T) \cap (S \cap U)$
++ $(S^c)^c = S, \quad S \cap S^c = \empty$
++ $S \cup \Omega = \Omega, \quad S \cap \Omega = S$
+
+De Morgan's Law
+
+$$
+\Big(\bigcap_{n} S_n\Big)^c = \bigcup_n S_n^c; \quad \Big( \bigcup_n S_n\Big)^c = \bigcap_n S_n^c
+$$
+
+Convergence:
+
++ If $a_i \leq a_{i+1}$, for all $i$, then either
+      1. the sequence “converges to $\infty$”
+      2. the sequence converges to some real number $a$
+
++ If $|a_i - a| \leq b_i$ for all $i$ and $b_i \rightarrow 0$, then $a_i \rightarrow a$.
+
+
+Infinite series: 
+
+$$
+\sum^{\infty}_{i=1} a_i =  \lim\limits_{n \rightarrow \infty} \sum^n_{i=1}a_i 
+$$
+provided limit exists.
+
++ If $a_i \geq 0$, limit exists.
+
++ If terms $a_i$ do not all have the same sign
+
+  * Limit may exist but be different if we sum in a different order
+
+  * Limit exists and independent of order of summation of $\sum^\infty_{i=1}|a_i| < \infty$.
+
+Geometric series
+
+$$
+\sum^\infty_{i=0}\alpha^i = 1 + \alpha + \alpha^2 + ... = \frac{1}{1-\alpha}, \quad |\alpha| < 1
+$$
+
+  Proof: 
+
+  Set $S =1+ \alpha + \alpha^2 + ...$, Compute $(1-\alpha)S = 1 - \alpha^{n+1}$. When $n \rightarrow \infty$, $(1-\alpha)S = 1$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
