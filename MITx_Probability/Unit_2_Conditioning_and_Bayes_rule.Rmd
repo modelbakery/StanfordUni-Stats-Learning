@@ -1,0 +1,58 @@
+---
+title: 'Unit 2: Conditioning and Independence'
+subtitle: 'MITx Statistics and Data Science'
+author: "Seung Hyun Sung"
+date: '2022 10 6'
+output: pdf_document
+---
+
+## Note
+
+_Bayes' rule is the foundation for the field of inference. It guides on how to process data and make inferences about unobserved quantities or phenomena_
+
+## [1] Conditioning and Bayes'Rule
+
+#### Conditional Probabilities 
+
++ $P(A|B) =\frac{P(A \cap B)}{P(B)}$, defined only when $P(B) > 0$.
+
++ $P(A \cap B|A) = \frac{P(A \cap B)}{P(A)}$
+
++ Properties:
+  * $P(A|B) \geq P(B)$, assuming $P(B) > 0$
+  * If $A \cap B = \empty$, then $P(A \cup C|B) = P(A|B) + P(C|B)$ 
+
+#### Three important tools 
+
++ Multiplication rule 
+
+  $P(A \cap B) = P(B)P(A|B) + P(A)P(B|A)$
+
+  $P(A^c \cap B \cap C^c) = P(A^c) P(B|A^c) P(C^c|A^c \cap B)$
+
+  $P(A_1 \cap A_2 \cap A_3) = P(A_1) \prod^n_{i = 2} P(A_i|A_1 \cap ...\cap A_{i_1})$
+  
++ Total probability theorem 
+
+  Mutually exclusive $(B_i \cap B_j = \oslash)$, $\{B_1, B_2, ..., B_k\}$
+
+  $P(B) = \sum^k_{i = 1} P(A_i)P(B|A_i)$, which is a weighted average of $P(B|A)$. Note that $\sum_iP(A_i) = 1$ 
+
+  
++ Bayes' rule
+
+  $P(A_i|B) = \frac{A_i \cap B}{P(B)} = \frac{P(A_i)P(B|A_i)}{\sum^k_{j=1}P(A_j)P(B|A_j)} = \frac{P(A_i)P(B|A_i)}{P(B)}$
+  
+  Inference
+  
+  * initial belief $P(A_i)$ on possible causes of an observed event B
+  
+    $A_i \xrightarrow{\text{model } \mathbf{P}(B|A_i)} B$
+    
+  * draw conclusions about causes
+  
+    $B \xrightarrow{\text{inference } \mathbf{P}(A_i | B)} A_i$
+  
+
+
+
