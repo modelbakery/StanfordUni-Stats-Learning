@@ -47,12 +47,81 @@ _Bayes' rule is the foundation for the field of inference. It guides on how to p
   
   * initial belief $P(A_i)$ on possible causes of an observed event B
   
-    $A_i \xrightarrow{\text{model } \mathbf{P}(B|A_i)} B$
+    $A_i \xrightarrow{\text{model } P(B|A_i)} B$
     
   * draw conclusions about causes
   
-    $B \xrightarrow{\text{inference } \mathbf{P}(A_i | B)} A_i$
+    $B \xrightarrow{\text{inference } P(A_i | B)} A_i$
   
 
+## [2] Independence
+
++ Independence of two events 
+
+  * Definition of independence: $P(A \cap B ) = P(A) \cdot P(B)$. 
+  * If $P(B|A) = P(B)$, occurrence of $A$ provides no new information about $B$.
+  * If $A$ and $B$ are independence, then $A$ and $B^c$ are independent.
+
++ Conditional independence
+
+  * Given $C$, the conditional independence is defined as independence under the probability law $P(\cdot | C)$.
+  
+$$
+P(A \cap B | C) = P(A | C) P(B | C)
+$$
+
++ Independence does not imply conditional independence.
+
+  In the case below, $A$ and $B$ have no intersection in the condition of $C$. If $A$ happens, $B$ won't happen in the condition of $C$. This means that $A$ and $B$ are not independent.
+
++ Independence of a collection of events
+
+  * Event $A_1, A_2, ..., A_n$ are independent if $P(A_i \cap A_j \cap ... \cap A_m) = P(A_i) P(A_j) ... P(A_m)$, for any distinct indices $i,j,...,m$.
+
++ Pairwise independence
+
+  * Independent events must be pairwise independent, but the reverse may not be true.
+
+  * E.g. two independent fair coin tosses. $C$: the two tosses had the same result. $H_1$: first toss is $H$, $H_2$: second toss is $H$, $P(H_1) = P(H_2) = 1/2, P(C) = 1/2$. 
+
+  * $P(H_1 \cap H_2) = 1/4 =  P(H_1)P(H_2)$
+  * $P(H_1 \cap C) = 1/4 = P(H_1)P(C)$
+  * But, $P(C| H_1 \cap H_2) = 1 \neq P(C) = 1/2$
+
+  So $H_1, H_2,C$ are pairwise independent, but not independent.
+
++ Reliability
+
+  * $p_i$: probability that unit $i$ is "up" ; $u_i$: $i$th unit up, $u_i$ are independent; $F_i$: $i$th unit down, $F_i$ are independent.
+
+
+$$
+\begin{aligned}
+P(\text{system up}) &= P(u_1 \cap u_2 \cap u_3)\\
+&= P(u_1) \cap P(u_2) \cap P(u_3)\\
+&= p_1 p_2 p_3
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+P(\text{system up}) &= P(u_1 \cup u_2 \cup u_3) \\
+&= 1-P(F_1 \cap F_2 \cap F_3)\\
+&= 1 - P(F_1) P(F_2) P(F_3)\\
+&= 1-(1-p_1)(1-p_2)(1-p_3)
+\end{aligned}
+$$
+
++ In general, if a __serial__ sub-system contains $m$ components with success probabilities $p_1, p_2...p_m$, then the probability of success of the entire sub-system is given by
+
+$$
+P(\text{whole system secceeds}) = p_1p_2...p_m
+$$
+
+  If a parallel sub-system contains $m$ components with success probabilities $p_1, p_2...p_m$, then the probability of success of the entire sub-system is given by
+
+$$
+P(\text{whole system succeeds}) = 1 - (1-p_1)(1-p_2)...(1-p_m)
+$$
 
 
