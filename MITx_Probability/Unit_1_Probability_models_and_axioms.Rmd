@@ -1,7 +1,7 @@
 ---
 title: 'Unit 1: Probability models and axioms'
 author: "Seung Hyun Sung"
-date: "11/24/2021"
+date: "11/24/2022"
 output: pdf_document
 subtitle: "MITx Statistics and Data Science"
 ---
